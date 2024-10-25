@@ -1,0 +1,2 @@
+https://medium.com/@ramonbarrioslascar/simple-classical-planning-problem-solved-with-pddl-9c8825ebb3b2
+https://medium.com/towardsdev/how-to-easily-run-pddl-solvers-in-your-own-infrastructure-29daeffddcc8
