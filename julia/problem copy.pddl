@@ -1,37 +1,61 @@
-(define (problem robot_chef_simple_problemcf)
-  (:domain robot_chef_simple)
+(define (problem robot_chef_updated_problem)
+  (:domain robot_chef_updated)
 
   ;; Objects
   (:objects
     robot1 - robot
+    pa - preparing-location
+    cla - cleaning-location
+    ka - cooking-location
     sa - storage-location
-    pa - preparation-location
-    rice fish seaweed - ingredient  ;; Ingredients
-    sushi - dish
+    knife - tool
+    rice fish seaweed flour chocolate - ingredient
+    sushi pollofre - dish
+    cooked raw clean dirty - status
+    cleaning cooking - process
   )
 
   ;; Initial state
   (:init
-    (robot-at robot1 pa)  ;; Robot starts in the storage area
-    (not (prepared sushi))
+    ;; Robot and location setup
+    (robot-at robot1 pa)
+    (connected sa pa)
+    (connected pa sa)
+    (connected pa cla)
+    (connected cla pa)
+    (connected ka cla)
+    (connected cla ka)
+    (robot-free robot1)
+    (priority-over pollofre sushi)
+
+
+    ;; Initial tool state and location
+    (item-at knife sa)
+    (clean knife)
+
+    ;; Ingredient initial counts in storage
+    (= (ingredient-count rice sa) 1)
+    (= (ingredient-count fish sa) 1)
+    (= (ingredient-count seaweed sa) 1)
+    (= (ingredient-count flour sa) 1)
+    (= (ingredient-count chocolate sa) 1)
+
+    (requires-cooking chocolate)
+    (requires-cooking rice)
     (requires-ingredient sushi rice)
     (requires-ingredient sushi fish)
     (requires-ingredient sushi seaweed)
-    (not (prepared sushi))
-    (connected sa pa)  ;; Storage and preparation areas are connected
-    (connected pa sa)  
-    (robot-free robot1)
-    (= (ingredient-count rice sa) 1)  ;; Initialize rice count to 3
-    (= (ingredient-count fish sa) 1)  ;; Initialize fish count to 3
-    (= (ingredient-count seaweed sa) 1)  ;; Initialize seaweed count to 3
-    (= (ingredient-count rice pa) 0)  ;; Initialize rice count to 3
-    (= (ingredient-count fish pa) 0)  ;; Initialize fish count to 3
-    (= (ingredient-count seaweed pa) 0)  ;; Initialize seaweed count to 3
+    (requires-ingredient pollofre flour)
+    (requires-ingredient pollofre chocolate)
+    (requires-tool pollofre knife)
+    (requires-tool sushi knife)
   )
 
-  ;; Goal: Ingredients used in the preparation area
-  (:goal (
-    prepared sushi
-  ))
-
+  ;; Goal state
+  (:goal 
+    (and
+      (prepared sushi)
+      (prepared pollofre)
+    )
+  )
 )

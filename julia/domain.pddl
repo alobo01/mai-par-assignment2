@@ -23,6 +23,7 @@
     (done-at ?p - process ?i - item ?l - location) ;; Process is completed at location
     (applicable ?s - status ?i - item) ;; Status is applicable for item
     (item-at ?i - item ?s - status ?loc - location) ;; Item with status is present at location
+    (priority-over ?p1 ?p2 - dish) ;; priority
   )
 
   ;;Functions
@@ -48,6 +49,9 @@
           (requires-item ?p ?oi ?i ?s)
           (item-at ?i ?s ?loc)
         )
+      )
+      (forall (?d - dish)
+        (not (priority-over ?d ?oi))
       )
     )
     :effect (and 

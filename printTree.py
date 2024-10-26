@@ -4,17 +4,17 @@ import re
 import networkx as nx
 import matplotlib.pyplot as plt
 
-def parse_action_tree(input_text):
+def parse_action_tree(input_text, remove_move=False):
     # Dictionary to store parsed data
     action_tree = {}
 
     # Regex patterns to match required components
     node_pattern = r"PathNode{GenericState}\((0x[0-9a-f]+)"
-    linked_ref_pattern = r"LinkedNodeRef\((0x[0-9a-f]+),\s*([^\)]+)\)"
+    linked_ref_pattern = r"LinkedNodeRef\((0x[0-9a-fA-F]+),\s*(.+?)\)"
 
     # Split the input text into separate nodes for parsing
     nodes = input_text.split("\n\n\n")
-    
+    preReferencesMoveActions = {}
     for node_text in nodes:
         # Find the main node ID
         main_node_match = re.search(node_pattern, node_text)
@@ -23,22 +23,38 @@ def parse_action_tree(input_text):
         else:
             continue
 
+
+
         # Initialize dictionary for this node
         action_tree[node_id] = {"prev_node": None, "action": "Root Node"}
-
+        
         # Find linked node reference and action
         linked_ref_match = re.search(linked_ref_pattern, node_text)
         if linked_ref_match:
             prev_node = linked_ref_match.group(1)
             action = linked_ref_match.group(2)
 
+            # If `remove_move` is True and the action contains "move", skip this node
+            if remove_move and "move" in action.lower():
+                if prev_node in preReferencesMoveActions:
+                    preReferencesMoveActions[node_id] = preReferencesMoveActions[prev_node]
+                else:
+                    preReferencesMoveActions[node_id] = prev_node
+                del action_tree[node_id]
+                continue
+
+
             # Check if node references itself, making it a root node
             if prev_node == node_id:
                 prev_node = None  # Set as None if it's a root
 
             # Update node details in dictionary
-            action_tree[node_id]["prev_node"] = prev_node
-            action_tree[node_id]["action"] = action
+            if remove_move and prev_node in preReferencesMoveActions:
+                action_tree[node_id]["prev_node"] = preReferencesMoveActions[prev_node]
+                action_tree[node_id]["action"] = action
+            else:
+                action_tree[node_id]["prev_node"] = prev_node
+                action_tree[node_id]["action"] = action
 
     return action_tree
 
@@ -122,7 +138,7 @@ def visualize_action_tree(data):
             G.add_node(node)  # Root node
 
     # Setting up a tree-like position layout for depth visualization
-    pos = hierarchy_pos(G, root, width=2.0, vert_gap=0.5)  # Increase width and vert_gap for spacing
+    pos = hierarchy_pos(G, root, width=20, vert_gap=0.5)  # Increase width and vert_gap for spacing
     edge_labels = {(u, v): d['action'] for u, v, d in G.edges(data=True)}
 
     # Drawing the graph with node labels and edge action labels
@@ -133,7 +149,8 @@ def visualize_action_tree(data):
     plt.title("Action Tree Visualization")
     plt.show(block=True)
 
+
 input_text = open("julia/tree.txt","r").read()
-data = parse_action_tree(input_text)
+data = parse_action_tree(input_text,remove_move=True)
 # Visualize the action tree with the provided data
 visualize_action_tree(data)
