@@ -29,6 +29,7 @@
   (:action substitution
     :parameters (?r - robot ?dish - dish ?ingredient1 - ingredient ?ingredient2 - ingredient ?loc - location)
     :precondition (and
+      (robot-at ?r ?loc)
       (not(ingredient-at ?ingredient1 ?loc))
       (not(ingredient-prepared ?ingredient1))
       (used-in ?ingredient1 ?dish)
@@ -87,7 +88,8 @@
   (:action clean-tool
     :parameters (?r - robot ?tool - tool ?loc - location)
     :precondition (and 
-      (robot-at ?r DWA) 
+      (robot-at ?r DWA)
+      (robot-at ?r ?loc) 
       (holding ?r ?tool)
       (not (tool-clean ?tool))
     )
