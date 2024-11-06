@@ -87,15 +87,12 @@
   (:action clean-tool
     :parameters (?r - robot ?tool - tool ?loc - location)
     :precondition (and 
-      (robot-at ?r ?loc) 
-      (tool-at ?tool ?loc)
-      (= ?loc DWA)
+      (robot-at ?r DWA) 
       (holding ?r ?tool)
       (not (tool-clean ?tool))
     )
     :effect (and 
       (tool-clean ?tool)
-      (tool-at ?tool ?loc) 
       (holding ?r ?tool)
     )
   )
