@@ -1,11 +1,11 @@
-(define (problem sushi-BIS)
-  (:domain restaurant-BIS)
+(define (problem places-ok)
+  (:domain restaurant-places-ok)
   (:objects
     robot1 - robot
     rice fish avocado noodles broth vegetables - ingredient
     knife - tool
     sushi ramen - dish
-    CA SA PA SVA DWA CTA MIXA - location
+    CA SA PA SVA CTA MIXA - location
   )
   
   (:init
@@ -13,8 +13,8 @@
     ; All ingredients need locations
     (ingredient-at rice SA)
     (ingredient-at avocado SA)
-    (ingredient-at noodles SA)  ; Added
-    (ingredient-at broth SA)    ; Added
+    (ingredient-at noodles SA)    ; Added
+    (ingredient-at broth SA)      ; Added
     (ingredient-at vegetables SA) ; Added
     (tool-at knife CTA)
     (tool-clean knife)
@@ -27,16 +27,22 @@
     (used-in broth ramen)
     
     ; Simplified adjacency relationships (bidirectional)
-    (adjacent SA SVA)
-    (adjacent SVA SA)
-    (adjacent SVA PA)
-    (adjacent PA SVA)
+    (adjacent SVA CA)
+    (adjacent CA SVA)
+    (adjacent CA DWA)
+    (adjacent CA PA)
+    (adjacent DWA CA)
+    (adjacent DWA PA)
+    (adjacent PA DWA)
     (adjacent PA MIXA)
+    (adjacent PA CA)
     (adjacent MIXA PA)
     (adjacent MIXA CTA)
+    (adjacent MIXA SA)
+    (adjacent SA MIXA)
+    (adjacent SA CTA)
     (adjacent CTA MIXA)
-    (adjacent PA CA)
-    (adjacent CA PA)
+    (adjacent CTA SA)
   )
   
   (:goal

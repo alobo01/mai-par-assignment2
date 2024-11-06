@@ -1,15 +1,19 @@
-(define (domain restaurant-BIS)
-  (:requirements :strips :typing :disjunctive-preconditions :negative-preconditions)
+(define (domain restaurant-places-ok)
+  (:requirements :strips :typing :disjunctive-preconditions :negative-preconditions :equality)
   (:types 
     robot 
     ingredient 
     tool 
     dish 
     location
-)
+  )
+  (:constants
+    DWA - location
+  )
   
   (:predicates
     (robot-at ?r - robot ?loc - location)
+    (at ?loc - location ?room - location)
     (ingredient-at ?ingredient - ingredient ?loc - location)
     (tool-at ?tool - tool ?loc - location)
     (ingredient-prepared ?ingredient - ingredient)
@@ -66,6 +70,7 @@
       (ingredient-prepared ?ingredient) 
       (not (holding ?r ?ingredient))
       (not (tool-clean ?tool))
+      (holding ?r ?tool)
     )
   )
   
@@ -83,10 +88,16 @@
     :parameters (?r - robot ?tool - tool ?loc - location)
     :precondition (and 
       (robot-at ?r ?loc) 
-      (tool-at ?tool ?loc) 
+      (tool-at ?tool ?loc)
+      (= ?loc DWA)
+      (holding ?r ?tool)
       (not (tool-clean ?tool))
     )
-    :effect (tool-clean ?tool)
+    :effect (and 
+      (tool-clean ?tool)
+      (tool-at ?tool ?loc) 
+      (holding ?r ?tool)
+    )
   )
   
   (:action move

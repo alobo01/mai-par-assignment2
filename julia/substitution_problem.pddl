@@ -5,7 +5,7 @@
     rice fish avocado noodles broth vegetables - ingredient
     knife - tool
     sushi ramen - dish
-    CA SA PA SVA CTA MIXA - location
+    CA SA PA SVA CTA MIXA DWA - location
   )
   
   (:init

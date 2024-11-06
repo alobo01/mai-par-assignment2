@@ -7,9 +7,6 @@
     dish 
     location
   )
-  (:constants
-    DWA - location
-  )
   
   (:predicates
     (robot-at ?r - robot ?loc - location)
@@ -87,7 +84,6 @@
     :parameters (?r - robot ?tool - tool ?loc - location)
     :precondition (and 
       (robot-at ?r ?loc) 
-      (= ?loc DWA)
       (tool-at ?tool ?loc)
       (not (tool-clean ?tool))
     )
