@@ -1,5 +1,5 @@
 (define (domain restaurant-places-ok)
-  (:requirements :strips :typing :disjunctive-preconditions :negative-preconditions :equality)
+  (:requirements :strips :typing :disjunctive-preconditions :negative-preconditions :equality :conditional-effects)
   (:types 
     robot 
     ingredient 
@@ -8,12 +8,11 @@
     location
   )
   (:constants
-    DWA - location
+    DWA MIXA CA CTA - location
   )
   
   (:predicates
     (robot-at ?r - robot ?loc - location)
-    (at ?loc - location ?room - location)
     (ingredient-at ?ingredient - ingredient ?loc - location)
     (tool-at ?tool - tool ?loc - location)
     (ingredient-prepared ?ingredient - ingredient)
@@ -23,33 +22,15 @@
     (holding ?r - robot ?ingredient - ingredient)
     (adjacent ?loc1 - location ?loc2 - location)
     (used-in ?ingredient - ingredient ?dish - dish)
-    (substitute ?ingredient1 - ingredient ?ingredient2 - ingredient ?dish - dish)
+    (need-mix ?ingredient - ingredient)
+    (need-cook ?ingredient - ingredient)
+    (need-cut ?ingredient)
   )
 
-  (:action substitution
-    :parameters (?r - robot ?dish - dish ?ingredient1 - ingredient ?ingredient2 - ingredient ?loc - location)
-    :precondition (and
-      (robot-at ?r ?loc)
-      (not(ingredient-at ?ingredient1 ?loc))
-      (not(ingredient-prepared ?ingredient1))
-      (used-in ?ingredient1 ?dish)
-      (ingredient-at ?ingredient2 ?loc)
-      (not(substitute ?ingredient1 ?ingredient2 ?dish))
-      (forall (?d - dish) (not (used-in ?ingredient2 ?d)))
-    )
-    :effect (and 
-      (holding ?r ?ingredient2) 
-      (not (ingredient-at ?ingredient2 ?loc))
-      (not(used-in ?ingredient1 ?dish))
-      (used-in ?ingredient2 ?dish)
-      (substitute ?ingredient2 ?ingredient1 ?dish)
-    )
-  )
-  
   (:action pick-up-ingredient
-    :parameters (?r - robot ?ingredient - ingredient ?loc - location)
+    :parameters (?r - robot ?ingredient - ingredient ?loc - location ?dish - dish)
     :precondition (and 
-      (robot-at ?r ?loc) 
+      (robot-at ?r ?loc)(used-in ?ingredient ?dish)
       (ingredient-at ?ingredient ?loc) 
       (not (exists (?i - ingredient) (holding ?r ?i)))
     )
@@ -58,33 +39,56 @@
       (not (ingredient-at ?ingredient ?loc))
     )
   )
-  
-  (:action prepare-ingredient
+
+
+  (:action mix-rice
+      :parameters (?r - robot ?ingredient - ingredient ?loc - location)
+      :precondition (and 
+      (need-mix ?ingredient)
+      (not(ingredient-prepared ?ingredient))
+      (robot-at ?r ?loc)(robot-at ?r MIXA) 
+      (holding ?r ?ingredient)
+      )
+      :effect (and 
+      (not(need-mix ?ingredient))
+      (holding ?r ?ingredient)
+      )
+  )
+
+  (:action cook-rice
+      :parameters (?r - robot ?ingredient - ingredient ?loc - location)
+      :precondition (and 
+      (not(need-mix ?ingredient))
+      (not(ingredient-prepared ?ingredient))
+      (robot-at ?r ?loc)(robot-at ?r CA)
+      (holding ?r ?ingredient)
+      (need-cook ?ingredient)
+      )
+      :effect (and 
+      (not(need-cook ?ingredient))
+      (holding ?r ?ingredient)
+      )
+    )
+
+  (:action cut
     :parameters (?r - robot ?ingredient - ingredient ?loc - location ?tool - tool)
     :precondition (and 
-      (robot-at ?r ?loc) 
+      (robot-at ?r ?loc)(robot-at ?r CTA)
+      (need-cut ?ingredient)
       (holding ?r ?ingredient) 
       (tool-at ?tool ?loc) 
       (tool-clean ?tool)
+      (not(ingredient-prepared ?ingredient))
     )
     :effect (and 
-      (ingredient-prepared ?ingredient) 
       (not (holding ?r ?ingredient))
       (not (tool-clean ?tool))
       (holding ?r ?tool)
+      (not(need-cut ?ingredient))
+      (ingredient-at ?ingredient ?loc)
     )
   )
-  
-  (:action assemble-dish
-    :parameters (?r - robot ?dish - dish ?loc - location)
-    :precondition (and 
-      (robot-at ?r ?loc)
-      (forall (?i - ingredient) 
-        (imply (used-in ?i ?dish) (ingredient-prepared ?i)))
-    )
-    :effect (dish-assembled ?dish)
-  )
-  
+
   (:action clean-tool
     :parameters (?r - robot ?tool - tool ?loc - location)
     :precondition (and 
@@ -99,8 +103,35 @@
     )
   )
   
+  
+  (:action prepare-ingredient
+    :parameters (?r - robot ?ingredient - ingredient ?loc - location ?tool - tool)
+    :precondition (and 
+      (robot-at ?r ?loc)
+      (holding ?r ?ingredient) 
+      (not(need-cook ?ingredient))
+      (not(need-mix ?ingredient))
+      (not(need-cut ?ingredient))
+      (not(ingredient-prepared ?ingredient))
+    )
+    :effect (and 
+      (ingredient-prepared ?ingredient) 
+      (holding ?r ?ingredient)
+    )
+  )
+
+  (:action assemble-dish
+    :parameters (?r - robot ?dish - dish ?loc - location)
+    :precondition (and 
+      (robot-at ?r ?loc)
+      (forall (?i - ingredient) 
+        (imply (used-in ?i ?dish) (ingredient-prepared ?i)))
+    )
+    :effect (dish-assembled ?dish)
+  )
+  
   (:action move
-    :parameters (?r - robot ?loc1 - location ?loc2 - location)
+    :parameters (?r - robot ?loc1 - location ?loc2 - location ?ingredient - ingredient)
     :precondition (and 
       (robot-at ?r ?loc1) 
       (adjacent ?loc1 ?loc2)
@@ -108,6 +139,8 @@
     :effect (and 
       (robot-at ?r ?loc2) 
       (not (robot-at ?r ?loc1))
+      (when (holding ?r ?ingredient)
+              (and(holding ?r ?ingredient)))
     )
   )
 

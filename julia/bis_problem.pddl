@@ -2,29 +2,27 @@
   (:domain restaurant-places-ok)
   (:objects
     robot1 - robot
-    rice fish avocado noodles broth vegetables - ingredient
+    rice fish - ingredient
     knife - tool
-    sushi ramen - dish
-    CA SA PA SVA CTA MIXA - location
+    sushi - dish
+    PA SA SVA - location
   )
   
   (:init
     (robot-at robot1 CA)
     ; All ingredients need locations
     (ingredient-at rice SA)
-    (ingredient-at avocado SA)
-    (ingredient-at noodles SA)    ; Added
-    (ingredient-at broth SA)      ; Added
-    (ingredient-at vegetables SA) ; Added
+    (need-cook rice)
+    (need-mix rice)
+    (need-cut fish)
+    (ingredient-at fish SA)
+    (need-cut fish)
     (tool-at knife CTA)
     (tool-clean knife)
     
     ; Define ingredients needed for sushi
     (used-in rice sushi)
     (used-in fish sushi)
-    (used-in noodles ramen)
-    (used-in vegetables ramen)
-    (used-in broth ramen)
     
     ; Simplified adjacency relationships (bidirectional)
     (adjacent SVA CA)
@@ -47,7 +45,7 @@
   
   (:goal
     (and 
-      (dish-plated ramen SVA)
+      (tool-clean knife)
       (dish-plated sushi SVA)
     )
   )
