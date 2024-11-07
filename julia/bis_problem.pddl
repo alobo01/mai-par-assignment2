@@ -5,7 +5,7 @@
     rice fish - ingredient
     knife - tool
     sushi - dish
-    PA SA SVA - location
+    SA SVA - location
   )
   
   (:init
