@@ -14,7 +14,6 @@
     (ingredient-at rice SA)
     (need-cook rice)
     (need-mix rice)
-    (need-cut fish)
     (ingredient-at fish SA)
     (need-cut fish)
     (tool-at knife CTA)
