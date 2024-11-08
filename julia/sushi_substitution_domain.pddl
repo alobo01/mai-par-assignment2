@@ -37,6 +37,7 @@
       (used-in ?ingredient1 ?dish)
       (ingredient-at ?ingredient2 ?loc)
       (replaceable ?ingredient1 ?ingredient2 ?dish)
+      (not(dish-assembled ?dish)) ; when the dish is assembled it do not need to check anymore the missing ingredients of that dish
       (robot-at ?r ?loc) ; the robot make the decision when it is at the same place as the ?ingredient2
       (forall (?d - dish) (not (used-in ?ingredient2 ?d)))
       (forall (?l - location) (not(ingredient-at ?ingredient1 ?l)))
