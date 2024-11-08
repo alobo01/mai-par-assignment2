@@ -10,16 +10,20 @@
   
   (:init
     (robot-at robot1 CA)
-    ; All ingredients need locations
+    ; All ingredients available in the storage area
     (ingredient-at rice SA)
+    (ingredient-at fish SA)
+
+    ; All the preparation requirements for these ingredients
     (need-cook rice)
     (need-mix rice)
-    (ingredient-at fish SA)
     (need-cut fish)
+
+    ; Available tools
     (tool-at knife CTA)
     (tool-clean knife)
     
-    ; Define ingredients needed for sushi
+    ; Sushi recipe
     (used-in rice sushi)
     (used-in fish sushi)
     
@@ -45,6 +49,7 @@
   (:goal
     (and 
       (tool-clean knife)
+      (tool-at knife CTA) ; it is placed back where it is used
       (dish-plated sushi SVA)
     )
   )

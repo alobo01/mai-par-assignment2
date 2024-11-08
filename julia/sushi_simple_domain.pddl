@@ -95,7 +95,7 @@
     )
   )
 
-  (:action mix-rice
+  (:action mix
       :parameters (?r - robot ?ingredient - ingredient ?loc - location)
       :precondition (and 
       (need-mix ?ingredient)
@@ -109,7 +109,7 @@
       )
   )
 
-  (:action cook-rice
+  (:action cook
       :parameters (?r - robot ?ingredient - ingredient ?loc - location)
       :precondition (and 
       (not(need-mix ?ingredient))

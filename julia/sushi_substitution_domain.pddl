@@ -27,6 +27,7 @@
     (need-mix ?ingredient - ingredient)
     (need-cook ?ingredient - ingredient)
     (need-cut ?ingredient)
+    (replaceable ?ingredient1 - ingredient ?ingredient2 - ingredient ?dish - dish)
   )
 
   (:action substitution-decision
@@ -35,7 +36,8 @@
       (not(ingredient-prepared ?ingredient1))
       (used-in ?ingredient1 ?dish)
       (ingredient-at ?ingredient2 ?loc)
-      (robot-at ?r ?loc)
+      (replaceable ?ingredient1 ?ingredient2 ?dish)
+      (robot-at ?r ?loc) ; the robot make the decision when it is at the same place as the ?ingredient2
       (forall (?d - dish) (not (used-in ?ingredient2 ?d)))
       (forall (?l - location) (not(ingredient-at ?ingredient1 ?l)))
     )
@@ -111,7 +113,7 @@
     )
   )
 
-  (:action mix-rice
+  (:action mix
       :parameters (?r - robot ?ingredient - ingredient ?loc - location)
       :precondition (and 
       (need-mix ?ingredient)
@@ -125,7 +127,7 @@
       )
   )
 
-  (:action cook-rice
+  (:action cook
       :parameters (?r - robot ?ingredient - ingredient ?loc - location)
       :precondition (and 
       (not(need-mix ?ingredient))

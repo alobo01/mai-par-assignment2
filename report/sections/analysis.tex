@@ -1,16 +1,46 @@
 \section{Analysis of the problem}
 
+We studied several problems, each presenting increasing levels of difficulty. In this section, we provide a detailed description of 
+all of them. 
+
+The robot is assumed to hold only one object at a time, whether it is an ingredient, a tool, or a prepared dish. Its storage capacity is
+ limited, which constrains its ability to carry objects. Despite this limitation, we assume that the robot can perform various actions,
+  such as assembling, cooking, cutting, or mixing, while holding an object, as it can be placed inside the robot without restricting its
+   arms, which allows it to perform the aforementioned actions.
+
+Subsequently, we will introduce the common predicates and actions used across all three scenarios considered in this project.
 \subsection{Basic problem}
 Predicates used:
 \begin{itemize}
-  \item $ (\text{robot-at } ?r \text{ - robot } ?loc \text{ - location}) $: Representes the localitation of a specific robot 'r', in an area of the kitchen 'loc'.
-  \item $ (\text{ingredient-at } ?\text{ingredient - ingredient } ?\text{loc - location} $): This predicate signifies the presence of an 'ingridient' in an area 'loc'.
-  \item $ (\text{tool-at } ?\text{tool - tool } ?\text{loc - location} $): This predicate indicates that the instrument 'tool' is in the area of the kitchen 'loc'.
-  \item $ (\text{ingredient-prepared } ?\text{ingredient - ingredient} $): This predicate indicates that the finished item of food 'dish' has been successfully assembled.
-  \item $ (\text{dish-assembled } ?\text{dish - dish} $): ??
-  \item $ (\text{dish-plated } ?\text{dish - dish } ?\text{loc - location} $): It denotes that the instrument 'tool' is clean.
-  \item $ (\text{tool-clean } ?\text{tool - tool} $): This predicaate denotes that the robot 'r' is holding the ingridient 'ingridient'.
-  \item $ (\text{holding } ?\text{r - robot } ?\text{item - item} $): This predicate represents that the robot 'r' is holding 'item', it can be a tool or an ingredient.
-  \item $ (\text{adjacent } ?\text{loc1 - location } ?\text{loc2 - location} $): Comprobation if the areas of the kitchen 'loc1' and 'loc2' are adjacent.
-  \item $ (\text{used-in } ?\text{ingredient - ingredient } ?\text{dish - dish} $): This predicates represents if the item 'ingrdient' has been used to prepare the recipe 'dish'.
+  \item $ (\text{robot-at } ?r \text{ - robot } ?loc \text{ - location}) $: Represents the location of a specific robot 'r' in an area of the kitchen 'loc'.
+  \item $ (\text{ingredient-at } ?\text{ingredient - ingredient } ?\text{loc - location}) $: This predicate signifies the presence of an 'ingredient' in an area 'loc'.
+  \item $ (\text{tool-at } ?\text{tool - tool } ?\text{loc - location}) $: This predicate indicates that the instrument 'tool' is in the area of the kitchen 'loc'.
+  \item $ (\text{ingredient-prepared } ?\text{ingredient - ingredient}) $: This predicate indicates that the ingredient 'ingredient' has been successfully prepared.
+  \item $ (\text{dish-assembled } ?\text{dish - dish}) $: Indicates that the dish 'dish' has been assembled from its ingredients.
+  \item $ (\text{dish-plated } ?\text{dish - dish } ?\text{loc - location}) $: Denotes that the dish 'dish' has been plated and placed at location 'loc'.
+  \item $ (\text{tool-clean } ?\text{tool - tool}) $: This predicate denotes that the tool 'tool' is clean.
+  \item $ (\text{holding-ingredient } ?\text{r - robot } ?\text{ingredient - ingredient}) $: Indicates that the robot 'r' is holding the ingredient 'ingredient'.
+  \item $ (\text{holding-dish } ?\text{r - robot } ?\text{dish - dish}) $: Indicates that the robot 'r' is holding the assembled dish 'dish'.
+  \item $ (\text{holding-tool } ?\text{r - robot } ?\text{tool - tool}) $: Indicates that the robot 'r' is holding the tool 'tool'.
+  \item $ (\text{adjacent } ?\text{loc1 - location } ?\text{loc2 - location}) $: Indicates that the kitchen areas 'loc1' and 'loc2' are adjacent.
+  \item $ (\text{used-in } ?\text{ingredient - ingredient } ?\text{dish - dish}) $: This predicate represents if the ingredient 'ingredient' has been used to prepare the dish 'dish'.
+  \item $ (\text{need-mix } ?\text{ingredient - ingredient}) $: Denotes that the ingredient 'ingredient' requires mixing.
+  \item $ (\text{need-cook } ?\text{ingredient - ingredient}) $: Denotes that the ingredient 'ingredient' requires cooking.
+  \item $ (\text{need-cut } ?\text{ingredient - ingredient}) $: Denotes that the ingredient 'ingredient' requires cutting.
 \end{itemize}
+Actions used:
+\begin{itemize}
+    \item \textbf{pick-up-ingredient:} The robot picks up an ingredient at a specified location.
+    \item \textbf{pick-up-tool:} The robot picks up a tool at a specified location.
+    \item \textbf{move:} The robot moves from one location to an adjacent location.
+    \item \textbf{drop-ingredient:} The robot drops the ingredient it is holding at a specified location.
+    \item \textbf{drop-tool:} The robot drops the tool it is holding at a specified location.
+    \item \textbf{mix:} The robot mixes an ingredient (e.i. rice) at the mixing area (MIXA), provided the ingredient needs mixing and is not already prepared.
+    \item \textbf{cook:} The robot cooks an ingredient (e.i. rice) at the cooking area (CA), provided it has been mixed and needs cooking.
+    \item \textbf{cut:} The robot cuts an ingredient at the cutting area (CTA) using a clean tool, provided the ingredient needs cutting.
+    \item \textbf{clean-tool:} The robot cleans a tool in the dishwashing area (DWA).
+    \item \textbf{assemble-dish:} The robot assembles a dish using prepared ingredients at a specified location.
+    \item \textbf{carrying-dish:} The robot carries an assembled dish, provided it is not already holding any other items.
+    \item \textbf{plate-dish:} The robot plates an assembled dish at the serving area (SVA).
+\end{itemize}
+
