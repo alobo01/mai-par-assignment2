@@ -129,20 +129,21 @@
     )
   
   (:action assemble-dish
-    :parameters (?r - robot ?dish - dish ?loc - location)
+    :parameters (?r - robot ?dish1 - dish ?dish2 - dish ?loc - location)
     :precondition (and
       (robot-at ?r ?loc)
       (robot-at ?r PA)
+      (priorization ?dish1 ?dish2)
       (forall (?i - ingredient)
-        (imply (used-in ?i ?dish)
+        (imply (used-in ?i ?dish1)
           (and (ingredient-prepared ?i) (ingredient-at ?i ?loc))
         )
       )
     )
     :effect (and
-      (dish-assembled ?dish)
+      (dish-assembled ?dish1)
       (forall (?i - ingredient)
-        (when (used-in ?i ?dish)
+        (when (used-in ?i ?dish1)
           (not (ingredient-at ?i ?loc))
         )
       )

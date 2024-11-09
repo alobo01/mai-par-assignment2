@@ -1,5 +1,5 @@
-(define (problem sushi-order-with-priorization)
-  (:domain restaurant-priorization)
+(define (problem sushi-order-with-priorization-f)
+  (:domain restaurant-priorization-f)
   (:objects
     robot1 - robot
     rice fish noodles broth vegetables - ingredient
@@ -39,8 +39,9 @@
     (used-in vegetables ramen)
     (used-in broth ramen)
 
-    ; Priorization of Sushi over Ramen
-    (priorization sushi ramen)
+    ; Priorization of Sushi over Ramen (higher number indicates higher priority)
+    (= (priority sushi) 2)  ; Higher priority
+    (= (priority ramen) 1)   ; Lower priority
     
     ; Simplified adjacency relationships (bidirectional)
     (adjacent SVA CA)
