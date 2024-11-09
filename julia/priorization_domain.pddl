@@ -183,7 +183,7 @@
     :effect (and 
       (dish-plated ?dish ?loc)
       (not(holding-dish ?r ?dish))
-      (decrease (priority ?dish) 10)
+      (decrease (priority ?dish) 2)
     )
   )
 

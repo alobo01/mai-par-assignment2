@@ -40,8 +40,8 @@
     (used-in broth ramen)
 
     ; Priorization of Sushi over Ramen (higher number indicates higher priority)
-    (= (priority sushi) 2)  ; Higher priority
-    (= (priority ramen) 1)   ; Lower priority
+    (= (priority sushi) 10)  ; Higher priority
+    (= (priority ramen) 9)   ; Lower priority
     
     ; Simplified adjacency relationships (bidirectional)
     (adjacent SVA CA)
