@@ -18,12 +18,13 @@
     (ingredient-at vegetables SA) 
 
     ; All the preparation requirements for these ingredients
-    (need-cook rice)
     (need-mix rice)
+    (need-cook rice)
     (need-cut fish)
     (need-cook noodles)
     (need-cut vegetables)
     (need-mix broth)
+    (need-cook broth)
 
     ; Available tools
     (tool-at knife CTA)

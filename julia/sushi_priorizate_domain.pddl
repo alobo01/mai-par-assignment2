@@ -27,12 +27,15 @@
     (need-mix ?ingredient - ingredient)
     (need-cook ?ingredient - ingredient)
     (need-cut ?ingredient)
+    (priorization ?dish1 - dish ?dish2 - dish)
   )
 
   (:action pick-up-ingredient
-    :parameters (?r - robot ?ingredient - ingredient ?loc - location)
+    :parameters (?r - robot ?ingredient - ingredient ?loc - location ?dish1 - dish ?dish2 - dish)
     :precondition (and 
-      (robot-at ?r ?loc) 
+      (robot-at ?r ?loc)
+      (used-in ?ingredient ?dish1)
+      (priorization ?dish1 ?dish2)
       (ingredient-at ?ingredient ?loc) 
       (not (exists (?i - ingredient) (holding-ingredient ?r ?i)))
       (not (exists (?t - tool) (holding-tool ?r ?t)))
@@ -147,30 +150,33 @@
   )
 
   (:action carrying-dish
-    :parameters (?r - robot ?dish - dish ?loc - location)
+    :parameters (?r - robot ?dish1 - dish ?dish2 - dish ?loc - location)
     :precondition(and
       (robot-at ?r ?loc)
       (robot-at ?r PA)
-      (dish-assembled ?dish)
+      (dish-assembled ?dish1)
+      (priorization ?dish1 ?dish2)
       (not (exists (?i - ingredient) (holding-ingredient ?r ?i)))
       (not (exists (?t - tool) (holding-tool ?r ?t)))
       (not (exists (?d - dish) (holding-dish ?r ?d)))
     )
     :effect(and
-      (holding-dish ?r ?dish)
+      (holding-dish ?r ?dish1)
     )
   )
 
 
   (:action plate-dish
-    :parameters (?r - robot ?dish - dish ?loc - location)
+    :parameters (?r - robot ?dish1 - dish ?dish2 - dish ?loc - location)
     :precondition (and 
       (robot-at ?r ?loc)
-      (holding-dish ?r ?dish)
+      (holding-dish ?r ?dish1)
+      (priorization ?dish1 ?dish2)
     )
     :effect (and 
-      (dish-plated ?dish ?loc)
-      (not(holding-dish ?r ?dish))
+      (dish-plated ?dish1 ?loc)
+      (not(holding-dish ?r ?dish1))
+      (priorization ?dish2 ?dish1)
     )
   )
 
