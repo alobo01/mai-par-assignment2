@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.3)  8 NOV 2024 19:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.3)  9 NOV 2024 11:11
 entering extended mode
 **c:/Users/maric/Documents/MASTERS/PrimerSemestre/PAR/homework2PAR/report/main.tex
 (c:/Users/maric/Documents/MASTERS/PrimerSemestre/PAR/homework2PAR/report/main.tex
@@ -364,31 +364,42 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 25.
  (C:\Users\maric\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (sections/introduction.tex) (sections/analysis.tex [1
+) (sections/introduction.tex) (sections/analysis.tex
+<restaurante.png, id=36, 395.67825pt x 232.4685pt>
+File: restaurante.png Graphic file (type png)
+<use restaurante.png>
+Package pdftex.def Info: restaurante.png  used on input line 18.
+(pdftex.def)             Requested size: 234.73524pt x 137.91077pt.
+ [1
 
-{C:/Users/maric/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]) (sections/results.tex) (sections/discusion.tex) (main.bbl)
+{C:/Users/maric/AppData/Local/MiKTeX/pdftex/config/pdftex.map} <./restaurante.png>] [2]
+Underfull \hbox (badness 10000) in paragraph at lines 69--73
+
+ []
+
+) (sections/results.tex) (sections/discusion.tex) (main.bbl)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 37.
- [2]
+ [3]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 37.
  (main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 37.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 37.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 63F9D55C76BBE83E9267CFF4B42ACF62;298.
+(rerunfilecheck)             Checksum: D6F56F6C9EDEAB734EE06EA425E3978F;442.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 37.
  ) 
 Here is how much of TeX's memory you used:
- 8201 strings out of 480790
- 127440 string characters out of 2897302
- 390901 words of memory out of 3000000
- 24046 multiletter control sequences out of 15000+200000
+ 8221 strings out of 480790
+ 127756 string characters out of 2897302
+ 393057 words of memory out of 3000000
+ 24060 multiletter control sequences out of 15000+200000
  540642 words of font info for 57 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,7n,47p,606b,374s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 45i,7n,47p,606b,376s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\maric\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/maric/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/maric/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/maric/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/maric/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/maric/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/maric/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on main.pdf (2 pages, 92896 bytes).
+Output written on main.pdf (3 pages, 127972 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
- 11 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 93 PDF objects out of 1000 (max. 8388607)
+ 15 named destinations out of 1000 (max. 500000)
+ 70 words of extra memory for PDF output out of 10000 (max. 10000000)
 

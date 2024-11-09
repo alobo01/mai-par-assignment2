@@ -8,9 +8,26 @@ The robot is assumed to hold only one object at a time, whether it is an ingredi
   such as assembling, cooking, cutting, or mixing, while holding an object, as it can be placed inside the robot without restricting its
    arms, which allows it to perform the aforementioned actions.
 
+Regarding the distribution of the restaurant where the robot works, it consists on seven rooms displaced as it is shown in the Figure 
+\ref{fig:restaurant}. The rooms are: preparation area (PA), cooking area (CA), serving area (SVA), dishwashing area (DWA),
+ mixing area (MIXA), cutting area (CTA) and storage area (STA).
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\linewidth]{restaurante.png}
+  \caption{Restaurant structure. Gray areas means that the robot can not move in these areas.}
+  \label{fig:restaurant}
+\end{figure}
+
 Subsequently, we will introduce the common predicates and actions used across all three scenarios considered in this project.
-\subsection{Basic problem}
-Predicates used:
+\subsection{Basic problem}\label{subsec:basic}
+It consists of the preparation of a simple sushi recipe. The ingredients were placed in the STA, and each of them had specific 
+requirements to be prepared (e.g., rice needed to be mixed and cooked, fish needed to be cut). Each action was carried out in the 
+area designated for it, and the final goal was to plate the dish in the serving area and return all the tools used to their original
+ place, clean and ready for future use.
+
+ The predicates used are listed below.
 \begin{itemize}
   \item $ (\text{robot-at } ?r \text{ - robot } ?loc \text{ - location}) $: Represents the location of a specific robot 'r' in an area of the kitchen 'loc'.
   \item $ (\text{ingredient-at } ?\text{ingredient - ingredient } ?\text{loc - location}) $: This predicate signifies the presence of an 'ingredient' in an area 'loc'.
@@ -28,7 +45,7 @@ Predicates used:
   \item $ (\text{need-cook } ?\text{ingredient - ingredient}) $: Denotes that the ingredient 'ingredient' requires cooking.
   \item $ (\text{need-cut } ?\text{ingredient - ingredient}) $: Denotes that the ingredient 'ingredient' requires cutting.
 \end{itemize}
-Actions used:
+The actions specified are outlined hereafter.
 \begin{itemize}
     \item \textbf{pick-up-ingredient:} The robot picks up an ingredient at a specified location.
     \item \textbf{pick-up-tool:} The robot picks up a tool at a specified location.
@@ -44,3 +61,22 @@ Actions used:
     \item \textbf{plate-dish:} The robot plates an assembled dish at the serving area (SVA).
 \end{itemize}
 
+\subsection{Substitution problem}
+In this scenario, the same sushi recipe as before needs to be plated; nevertheless, an ingredient used in this dish is missing at the 
+STA. Other ingredients were available, and several predicates were given to the robot to inform it about possible substitutions. 
+The robot was able to examine the available ingredients and decide whether to make a substitution in order to complete its task. 
+
+The same predicates and actions as those described for the \textbf{basic problem} in subsection \ref{subsec:basic} were used. 
+However, one additional predicate and action were included in this PDDL domain to account for the new problem.
+\\ \\ 
+Additional predicate:
+\begin{itemize}
+  \item $ (\text{replaceable } ?ingredient1  \text{ - ingredient }  ?ingredient2 \text{ - ingredient }  ?dish  \text{ - dish}) $: Represents that 'ingredient1' can be replaced by 'ingredient2' in the preparation of 'dish'.
+\end{itemize}
+Additional action:
+\begin{itemize}
+  \item \textbf{substitution-decision:} The robot makes the decision of changing the 'ingredient1', that is used in the preparation of 
+  a dish, by 'ingredient2' when the first one is missing and the second one is suitable for the change.
+\end{itemize}
+
+\subsection{Priorization order problem}

@@ -1,37 +1,40 @@
-(define (problem sushi_substitucion_problem)
-  (:domain sushi_substitucion)
+(define (problem sushi-order-with-priorization)
+  (:domain restaurant-priorization)
   (:objects
     robot1 - robot
-    rice fish avocado cucumber - ingredient
+    rice fish noodles broth vegetables - ingredient
     knife - tool
-    sushi - dish
+    sushi ramen - dish
     SA SVA - location
   )
   
   (:init
     (robot-at robot1 CA)
-    ; All ingredients available in the Storage Area
+    ; All ingredients available in the storage area
     (ingredient-at rice SA)
-    (ingredient-at avocado SA)
-    (ingredient-at cucumber SA)
+    (ingredient-at fish SA)
+    (ingredient-at noodles SA)   
+    (ingredient-at broth SA)      
+    (ingredient-at vegetables SA) 
 
     ; All the preparation requirements for these ingredients
-    (need-cut avocado)
-    (need-cut cucumber)
     (need-cook rice)
     (need-mix rice)
+    (need-cut fish)
+    (need-cook noodles)
+    (need-cut vegetables)
+    (need-mix broth)
 
-    ; The possible replacements of the recipe sushi
-    (replaceable fish avocado sushi)
-    ;(replaceable avocado cucumber sushi)
-
-    ; Tool to cut placed in the cutting area
+    ; Available tools
     (tool-at knife CTA)
     (tool-clean knife)
     
     ; Sushi recipe
     (used-in rice sushi)
     (used-in fish sushi)
+    (used-in noodles ramen)
+    (used-in vegetables ramen)
+    (used-in broth ramen)
     
     ; Simplified adjacency relationships (bidirectional)
     (adjacent SVA CA)
@@ -54,9 +57,10 @@
   
   (:goal
     (and 
-      (tool-clean knife)  ; it is cleaned
+      (tool-clean knife)
       (tool-at knife CTA) ; it is placed back where it is used
       (dish-plated sushi SVA)
+      (dish-plated ramen SVA)
     )
   )
 )
