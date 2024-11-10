@@ -8,7 +8,7 @@
   )
   
   (:init
-    (robot-at robot1 CA)
+    (robot-at robot1 SA)
     ; All ingredients available in the storage area
     (ingredient-at rice SA)
     (ingredient-at fish SA)
