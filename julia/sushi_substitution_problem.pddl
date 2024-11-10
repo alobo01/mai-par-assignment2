@@ -2,7 +2,7 @@
   (:domain sushi_substitucion)
   (:objects
     robot1 - robot
-    rice fish avocado cucumber - ingredient
+    rice fish avocado - ingredient
     knife - tool
     sushi - dish
     SA SVA - location
@@ -13,17 +13,14 @@
     ; All ingredients available in the Storage Area
     (ingredient-at rice SA)
     (ingredient-at avocado SA)
-    (ingredient-at cucumber SA)
 
     ; All the preparation requirements for these ingredients
     (need-cut avocado)
-    (need-cut cucumber)
     (need-cook rice)
     (need-mix rice)
 
     ; The possible replacements of the recipe sushi
     (replaceable fish avocado sushi)
-    ;(replaceable avocado cucumber sushi)
 
     ; Tool to cut placed in the cutting area
     (tool-at knife CTA)
