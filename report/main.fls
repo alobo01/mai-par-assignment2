@@ -170,6 +170,16 @@ INPUT C:\Users\maric\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\sym
 INPUT C:\Users\maric\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 INPUT sections\results.tex
 INPUT sections\results.tex
+INPUT fig1.png
+INPUT .\fig1.png
+INPUT .\fig1.png
+INPUT .\fig1.png
+INPUT .\fig1.png
+INPUT fig2.png
+INPUT .\fig2.png
+INPUT .\fig2.png
+INPUT .\fig2.png
+INPUT .\fig2.png
 INPUT sections\discusion.tex
 INPUT sections\discusion.tex
 INPUT main.bbl

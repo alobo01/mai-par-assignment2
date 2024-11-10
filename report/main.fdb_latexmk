@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 0 "main.aux" "main.bbl" "main" 1731255873.38171 -1
+["bibtex main"] 1731257376.58662 "main.aux" "main.bbl" "main" 1731257380.24165 0
   "./bibliography.bib" 1730934649 293 1a08a859f9a77a4fed5ecb7b3dbaf040 ""
   "C:/Users/maric/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/plain.bst" 1291864736 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1731255872 2413 124778619bc33e6ff753ec89348b21a5 "pdflatex"
+  "main.aux" 1731257378 2964 1e98eae186abcabdcb481021986501fd "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1731255871.18342 "c:/Users/maric/Documents/MASTERS/PrimerSemestre/PAR/homework2PAR/report/main.tex" "main.pdf" "main" 1731255873.38244 0
+["pdflatex"] 1731257377.05074 "c:/Users/maric/Documents/MASTERS/PrimerSemestre/PAR/homework2PAR/report/main.tex" "main.pdf" "main" 1731257380.24297 0
   "C:/Users/maric/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1730588444 11548 6022238ac098155d057f3646f03c22b2 ""
   "C:/Users/maric/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1599134737 10020123 13fc3899469cf88fe483fb53b44d9711 ""
   "C:/Users/maric/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1730626272 1657513 2fa44a5ba3cb9d6a4282928c23d0775d ""
@@ -98,15 +98,17 @@
   "C:/Users/maric/AppData/Local/Programs/MiKTeX/tex/latex/ulem/ulem.sty" 1578651445 15682 94f55b803e160cf7fb6e4d77d07cfe1d ""
   "C:/Users/maric/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "c:/Users/maric/Documents/MASTERS/PrimerSemestre/PAR/homework2PAR/report/main.tex" 1731147100 764 e948a9f128d52d761a950f7441be5c56 ""
-  "main.aux" 1731255872 2413 124778619bc33e6ff753ec89348b21a5 "pdflatex"
-  "main.bbl" 1731253770 0 d41d8cd98f00b204e9800998ecf8427e "bibtex main"
-  "main.out" 1731255872 442 d6f56f6c9edeab734ee06ea425e3978f "pdflatex"
+  "fig1.png" 1731256916 90366 bdbf83f1b995c78909c4c653842d213f ""
+  "fig2.png" 1731257146 95946 8d4da0b6c195789d848986e3db4defc8 ""
+  "main.aux" 1731257378 2964 1e98eae186abcabdcb481021986501fd "pdflatex"
+  "main.bbl" 1731257376 279 0a0ccb1af119e5b1c510e3aa8de984b2 "bibtex main"
+  "main.out" 1731257378 442 d6f56f6c9edeab734ee06ea425e3978f "pdflatex"
   "main.tex" 1731147100 764 e948a9f128d52d761a950f7441be5c56 ""
   "restaurante.png" 1731092244 31556 f0f8c998660fa2b8733c07c4deba00c4 ""
   "sections/analysis.tex" 1731252632 6813 b089aa5006f0fb646b70840e89e22a11 ""
-  "sections/discusion.tex" 1731255073 920 169b9ba044811c7407ff5a80a7e06909 ""
+  "sections/discusion.tex" 1731257372 936 e6d1682af6f790a46caa3cde72bc3521 ""
   "sections/introduction.tex" 1731088262 734 9827a835d29bc4b47d84263911adac56 ""
-  "sections/results.tex" 1731255869 604 3a7ec65cd528488983f79a363e682046 ""
+  "sections/results.tex" 1731257350 1019 4d941bd3aa6e27f4cb588d55df4f6c64 ""
   (generated)
   "main.aux"
   "main.log"
