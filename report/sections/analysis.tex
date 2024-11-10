@@ -21,6 +21,7 @@ Regarding the distribution of the restaurant where the robot works, it consists 
 \end{figure}
 
 Subsequently, we will introduce the common predicates and actions used across all three scenarios considered in this project.
+
 \subsection{Basic problem}\label{subsec:basic}
 It consists of the preparation of a simple sushi recipe. The ingredients were placed in the STA, and each of them had specific 
 requirements to be prepared (e.g., rice needed to be mixed and cooked, fish needed to be cut). Each action was carried out in the 
@@ -61,6 +62,9 @@ The actions specified are outlined hereafter.
     \item \textbf{plate-dish:} The robot plates an assembled dish at the serving area (SVA).
 \end{itemize}
 
+
+This case can be found in the attached files $'sushi_simple_domain.pddl'$ and $'sushi_simple_problem.pddl'$.
+
 \subsection{Substitution problem}
 In this scenario, the same sushi recipe as before needs to be plated; nevertheless, an ingredient used in this dish is missing at the 
 STA. Other ingredients were available, and several predicates were given to the robot to inform it about possible substitutions. 
@@ -79,4 +83,28 @@ Additional action:
   a dish, by 'ingredient2' when the first one is missing and the second one is suitable for the change.
 \end{itemize}
 
+This case can be found in the attached files $'sushi_substitution_domain.pddl'$ and $'sushi_substitution_problem.pddl'$.
+
 \subsection{Priorization order problem}
+
+Finally, we step to the stage were the plates were already prepared but they need to be deliver in a certain order. To do so, two 
+functions were created. 
+
+The only predicates used from subsection \ref{subsec:basic} are as follows: \textit{robot-at}, \textit{dish-assembled}, 
+\textit{dish-plated}, \textit{holding-dish}, and \textit{adjacent}. 
+
+Regarding the actions, the used ones are outlined hereafter.
+\begin{itemize}
+    \item \textbf{move:} The robot moves from one location to an adjacent location.
+    \item \textbf{carrying-dish:} The robot picks up an assembled dish at a specified location, provided it matches the current priority level and the robot is not already holding any other items.
+    \item \textbf{plate-dish:} The robot plates an assembled dish at a specified location, provided it matches the current priority level, and then advances the priority level.
+\end{itemize}
+
+
+The functions used in this problem are specified as follows:
+\begin{itemize}
+  \item $ (\text{priority } ?\text{dish - dish}) $: Represents the priority value assigned to each dish, determining the order in which dishes are to be served.
+  \item $ (\text{current-priority-level}) $: Tracks the current priority level that should be served next, guiding the sequence of dish preparation and serving.
+\end{itemize}
+
+This case can be found in the attached files $'fluents_priority_domain.pddl'$ and $'fluents_priority_problem.pddl'$.
