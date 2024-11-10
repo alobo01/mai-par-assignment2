@@ -1,11 +1,11 @@
-(define (problem places-ok)
-  (:domain restaurant-places-ok)
+(define (problem places-counting)
+  (:domain restaurant-places-counting)
   (:objects
     robot1 - robot
-    rice fish - ingredient
+    rice fish seaweed - ingredient
     knife - tool
     sushi - dish
-    SA SVA - location
+    SVA - location
   )
   
   (:init
@@ -13,11 +13,13 @@
     ; All ingredients available in the storage area
     (ingredient-at rice SA)
     (ingredient-at fish SA)
+    (ingredient-at seaweed SA)
 
     ; All the preparation requirements for these ingredients
     (need-cook rice)
     (need-mix rice)
     (need-cut fish)
+    (need-cut seaweed)
 
     ; Available tools
     (tool-at knife CTA)
@@ -26,6 +28,7 @@
     ; Sushi recipe
     (used-in rice sushi)
     (used-in fish sushi)
+    (used-in seaweed sushi)
     
     ; Simplified adjacency relationships (bidirectional)
     (adjacent SVA CA)
@@ -46,11 +49,9 @@
     (adjacent CTA SA)
 
     ;; Initial quantity of ingredients
-    (= (ingredient-count rice sa) 1)
-    (= (ingredient-count fish sa) 1)
-    (= (ingredient-count seaweed sa) 1)
-    (= (ingredient-count flour sa) 1)
-    (= (ingredient-count chocolat sa) 1)
+    (= (ingredient-count rice) 1)
+    (= (ingredient-count fish) 1)
+    (= (ingredient-count seaweed) 1)
   )
   
   (:goal

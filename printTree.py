@@ -151,6 +151,6 @@ def visualize_action_tree(data):
 
 
 input_text = open("julia/tree.txt","r").read()
-data = parse_action_tree(input_text,remove_move=True)
+data = parse_action_tree(input_text,remove_move=False)
 # Visualize the action tree with the provided data
 visualize_action_tree(data)
