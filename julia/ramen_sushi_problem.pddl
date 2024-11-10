@@ -1,10 +1,10 @@
-(define (problem places-ok)
-  (:domain restaurant-places-ok)
+(define (problem ramen_sushi)
+  (:domain ramen_sushi)
   (:objects
     robot1 - robot
-    rice fish - ingredient
+    noodles vegetables rice fish - ingredient
     knife - tool
-    sushi - dish
+    ramen sushi - dish
   )
   
   (:init
@@ -12,11 +12,15 @@
     ; All ingredients available in the storage area
     (ingredient-at rice SA)
     (ingredient-at fish SA)
+    (ingredient-at noodles SA)      
+    (ingredient-at vegetables SA) 
 
     ; All the preparation requirements for these ingredients
-    (need-cook rice)
     (need-mix rice)
+    (need-cook rice)
     (need-cut fish)
+    (need-cook noodles)
+    (need-cut vegetables)
 
     ; Available tools
     (tool-at knife CTA)
@@ -25,6 +29,10 @@
     ; Sushi recipe
     (used-in rice sushi)
     (used-in fish sushi)
+
+    ; Ramen recipe
+    (used-in noodles ramen)
+    (used-in vegetables ramen)
     
     ; Simplified adjacency relationships (bidirectional)
     (adjacent SVA CA)
@@ -47,9 +55,10 @@
   
   (:goal
     (and 
+      (dish-plated ramen SVA)
+      (dish-plated sushi SVA)
       (tool-clean knife)
       (tool-at knife CTA) ; it is placed back where it is used
-      (dish-plated sushi SVA)
     )
   )
 )

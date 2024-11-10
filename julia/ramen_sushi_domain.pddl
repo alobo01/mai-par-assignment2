@@ -1,4 +1,4 @@
-(define (domain restaurant-places-ok)
+(define (domain ramen_sushi)
   (:requirements :strips :typing :disjunctive-preconditions :negative-preconditions :equality :conditional-effects)
   (:types 
     robot 
@@ -158,6 +158,7 @@
     )
     :effect(and
       (holding-dish ?r ?dish)
+      (not(dish-assembled ?dish))
     )
   )
 
@@ -170,6 +171,7 @@
     )
     :effect (and 
       (dish-plated ?dish ?loc)
+      (not(holding-dish ?r ?dish))
     )
   )
 
