@@ -5,7 +5,6 @@
     rice fish noodles broth vegetables - ingredient
     knife - tool
     sushi ramen - dish
-    SA SVA - location
   )
   
   (:init
@@ -13,8 +12,7 @@
     ; All ingredients available in the storage area
     (ingredient-at rice SA)
     (ingredient-at fish SA)
-    (ingredient-at noodles SA)   
-    (ingredient-at broth SA)      
+    (ingredient-at noodles SA)      
     (ingredient-at vegetables SA) 
 
     ; All the preparation requirements for these ingredients
@@ -23,8 +21,6 @@
     (need-cut fish)
     (need-cook noodles)
     (need-cut vegetables)
-    (need-mix broth)
-    (need-cook broth)
 
     ; Available tools
     (tool-at knife CTA)
@@ -37,10 +33,6 @@
     ; Ramen recipe
     (used-in noodles ramen)
     (used-in vegetables ramen)
-    (used-in broth ramen)
-
-    ; Priorization of Sushi over Ramen
-    (priorization sushi ramen)
     
     ; Simplified adjacency relationships (bidirectional)
     (adjacent SVA CA)

@@ -1,5 +1,5 @@
-(define (domain restaurant-priorization-f)
-  (:requirements :strips :typing :disjunctive-preconditions :negative-preconditions :equality :conditional-effects :numeric-fluents)
+(define (domain restaurant-priorization)
+  (:requirements :strips :typing :disjunctive-preconditions :negative-preconditions :equality :conditional-effects)
   (:types 
     robot 
     ingredient 
@@ -8,7 +8,7 @@
     location
   )
   (:constants
-    DWA MIXA CA CTA PA - location
+    DWA MIXA CA CTA PA SA SVA - location
   )
   
   (:predicates
@@ -27,18 +27,15 @@
     (need-mix ?ingredient - ingredient)
     (need-cook ?ingredient - ingredient)
     (need-cut ?ingredient)
-  )
-  (:functions
-    (priority ?dish)
+    ;(priorization ?dish1 - dish ?dish2 - dish)
   )
 
   (:action pick-up-ingredient
-    :parameters (?r - robot ?ingredient - ingredient ?loc - location ?dish - dish )
+    :parameters (?r - robot ?ingredient - ingredient ?loc - location)
     :precondition (and 
       (robot-at ?r ?loc)
-      (used-in ?ingredient ?dish)
-      (forall(?d - dish) 
-        (< (priority ?d) (priority ?dish)))
+      ;(used-in ?ingredient ?dish1)
+      ;(priorization ?dish1 ?dish2)
       (ingredient-at ?ingredient ?loc) 
       (not (exists (?i - ingredient) (holding-ingredient ?r ?i)))
       (not (exists (?t - tool) (holding-tool ?r ?t)))
@@ -132,12 +129,11 @@
     )
   
   (:action assemble-dish
-    :parameters (?r - robot ?dish - dish ?loc - location)
+    :parameters (?r - robot ?loc - location ?dish - dish)
     :precondition (and
       (robot-at ?r ?loc)
       (robot-at ?r PA)
-      (forall(?d - dish) 
-        (< (priority ?d) (priority ?dish)))
+      ;(priorization ?dish1 ?dish2)
       (forall (?i - ingredient)
         (imply (used-in ?i ?dish)
           (and (ingredient-prepared ?i) (ingredient-at ?i ?loc))
@@ -160,8 +156,7 @@
       (robot-at ?r ?loc)
       (robot-at ?r PA)
       (dish-assembled ?dish)
-      (forall(?d - dish) 
-        (< (priority ?d) (priority ?dish)))
+      ;(priorization ?dish1 ?dish2)
       (not (exists (?i - ingredient) (holding-ingredient ?r ?i)))
       (not (exists (?t - tool) (holding-tool ?r ?t)))
       (not (exists (?d - dish) (holding-dish ?r ?d)))
@@ -177,13 +172,11 @@
     :precondition (and 
       (robot-at ?r ?loc)
       (holding-dish ?r ?dish)
-      (forall(?d - dish) 
-        (< (priority ?d) (priority ?dish)))
+      ;(priorization ?dish1 ?dish2)
     )
     :effect (and 
       (dish-plated ?dish ?loc)
       (not(holding-dish ?r ?dish))
-      (decrease (priority ?dish) 2)
     )
   )
 

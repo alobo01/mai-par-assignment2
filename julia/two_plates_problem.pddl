@@ -1,47 +1,37 @@
-(define (problem sushi-order-with-priorization-f)
-  (:domain restaurant-priorization-f)
+(define (problem sushi-two)
+  (:domain restaurant-two)
   (:objects
     robot1 - robot
-    rice fish noodles broth vegetables - ingredient
-    knife - tool
+    rice fish noodles vegetables - item
     sushi ramen - dish
-    SA SVA - location
   )
   
   (:init
     (robot-at robot1 CA)
     ; All ingredients available in the storage area
-    (ingredient-at rice SA)
-    (ingredient-at fish SA)
-    (ingredient-at noodles SA)   
-    (ingredient-at broth SA)      
-    (ingredient-at vegetables SA) 
+    ;(item-at rice SA)
+    ;(item-at fish SA)
+    (item-at noodles SA)      
+    (item-at vegetables SA) 
 
     ; All the preparation requirements for these ingredients
-    (need-mix rice)
-    (need-cook rice)
-    (need-cut fish)
+    ;(need-mix rice)
+    ;(need-cook rice)
+    ;(need-cut fish)
     (need-cook noodles)
     (need-cut vegetables)
-    (need-mix broth)
-    (need-cook broth)
 
     ; Available tools
-    (tool-at knife CTA)
+    (item-at knife CTA)
     (tool-clean knife)
     
     ; Sushi recipe
-    (used-in rice sushi)
-    (used-in fish sushi)
+    ;(used-in rice sushi)
+    ;(used-in fish sushi)
 
     ; Ramen recipe
     (used-in noodles ramen)
     (used-in vegetables ramen)
-    (used-in broth ramen)
-
-    ; Priorization of Sushi over Ramen (higher number indicates higher priority)
-    (= (priority sushi) 10)  ; Higher priority
-    (= (priority ramen) 9)   ; Lower priority
     
     ; Simplified adjacency relationships (bidirectional)
     (adjacent SVA CA)
@@ -65,8 +55,8 @@
   (:goal
     (and 
       (tool-clean knife)
-      (tool-at knife CTA) ; it is placed back where it is used
-      (dish-plated sushi SVA)
+      (item-at knife CTA) ; it is placed back where it is used
+      ;(dish-plated sushi SVA)
       (dish-plated ramen SVA)
     )
   )
