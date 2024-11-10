@@ -28,10 +28,23 @@
 \input{sections/results} 
 \input{sections/discusion}
 
-\section{Conclusion}
-Hola\cite{key}
 
-\bibliographystyle{plain}
-\bibliography{bibliography.bib}
+
+\section{Conclusion}
+This work addresses three different problems and draws two key conclusions, aligning with theoretical insights. Specifically, while domain-specific models are more costly to develop, they provide significant gains in efficiency. Our approach evolved across three stages:
+
+\begin{enumerate}
+	\item \textbf{General Domain:} Initially, we pursued a general domain capable of handling various processes (such as cutting, cleaning, and assembling) by simply adjusting the problem configuration. However, this approach proved inefficient, as each action involved numerous parameters, greatly increasing processing time.
+	
+	\item \textbf{Specific Domain:} Next, we shifted to a domain-specific model, creating distinct actions for each process. Although this approach required more development effort, it led to substantial efficiency improvements, aligning with the theory that tailored domains can optimize performance.
+	
+	\item \textbf{Implementing Constants:} We observed that the planner frequently evaluated multiple locations for the same action, despite fixed locations being required for certain processes. By introducing constants and removing the location parameter, we achieved further efficiency gains, reinforcing the benefits of domain-specific constraints.
+\end{enumerate}
+
+This progression underscores that, while domain-specific models demand a higher development investment, they offer crucial efficiency advantages, consistent with theoretical expectations.
+
+This study also reveals that creating a separate plan for each dish and then prioritizing the serving order through a secondary planner is far more efficient. By breaking down the task into individual subplans, the planner avoids navigating an overwhelming number of states to achieve its goal, which significantly enhances processing speed. Our findings show that planning for large, complex tasks as a single sequence is inefficient; instead, dividing the task into manageable subtasks allows for simpler and more effective planning.
+
+Additionally, we experimented with the Backward A$*$ algorithm; however, the results were less efficient than the approach presented here. This further emphasizes the advantages of the domain-specific adjustments and task subdivision strategies we employed.
 
 \end{document}

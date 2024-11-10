@@ -2,7 +2,7 @@
   (:domain restaurant-places-counting)
   (:objects
     robot1 - robot
-    rice fish seaweed - ingredient
+    rice fish - ingredient
     knife - tool
     sushi - dish
     SVA - location
@@ -13,13 +13,11 @@
     ; All ingredients available in the storage area
     (ingredient-at rice SA)
     (ingredient-at fish SA)
-    (ingredient-at seaweed SA)
 
     ; All the preparation requirements for these ingredients
     (need-cook rice)
     (need-mix rice)
     (need-cut fish)
-    (need-cut seaweed)
 
     ; Available tools
     (tool-at knife CTA)
@@ -28,7 +26,6 @@
     ; Sushi recipe
     (used-in rice sushi)
     (used-in fish sushi)
-    (used-in seaweed sushi)
     
     ; Simplified adjacency relationships (bidirectional)
     (adjacent SVA CA)
@@ -51,7 +48,6 @@
     ;; Initial quantity of ingredients
     (= (ingredient-count rice) 1)
     (= (ingredient-count fish) 1)
-    (= (ingredient-count seaweed) 1)
   )
   
   (:goal

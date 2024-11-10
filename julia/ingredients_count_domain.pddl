@@ -119,13 +119,12 @@
   )
 
   (:action cook
-      :parameters (?r - robot ?ingredient - ingredient ?loc - location)
+      :parameters (?r - robot ?ingredient - ingredient)
       :precondition (and 
       (not(need-mix ?ingredient))
       (not(ingredient-prepared ?ingredient))
-      (robot-at ?r ?loc)
       (robot-at ?r CA)
-      (ingredient-at ?ingredient ?loc)
+      (ingredient-at ?ingredient CA)
       (need-cook ?ingredient)
       )
       :effect (and 

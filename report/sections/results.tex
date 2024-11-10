@@ -1,14 +1,13 @@
 \section{Results}
 In all the scenarios described in the previous section, the results were obtained using a PDDL planner implemented in Julia. 
-Specifically, the A* search algorithm was implemented. The planner initializes the problem state using the initstate function and 
+Specifically, the A$*$ search algorithm was implemented. The planner initializes the problem state using the initstate function and 
 defines the goals using MinStepsGoal, optimizing for minimal steps to achieve the objectives, while the planning process employs an A$*$ 
 planner (AStarPlanner) with the HAddR heuristic to guide the search.
 
 
-The implementation of Julia was mandatory due to...
+The final path obtained for each studied case can be seen in Figure \ref{fig:fig1}, Figure \ref{fig:fig2} and Figure \ref{fig:fig3}.
 
-
-The final path obtained for each studied case can be seen in Figure \ref{fig:fig1}, Figure \ref{fig:fig2} and Figure \ref{fig:3}.
+The code used to execute these PDDL files, along with the generated plans, is available in the accompanying Jupyter notebook file within the attached ZIP folder.
 
 \begin{figure}[t]
     \centering
